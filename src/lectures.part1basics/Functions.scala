@@ -1,5 +1,7 @@
 package lectures.part1basics
 
+import scala.annotation.tailrec
+
 object Functions extends App {
     def aFunction(a: String, b: Int): String = {
         a + " " + b
@@ -7,11 +9,15 @@ object Functions extends App {
 
     println(aFunction("age:", 32))
 
-    // recursive functions need their return types defined
-    def fib(f: Int): Int = {
-        if (f<=0) 0 
-        else if (f==1) 1
-        else fib(f-1) + fib(f-2)
+    def fib(x: Int, acc: Int = 1, last: Int = 0): Int = {
+        if (x == 0) last
+        else fib(x-1, acc + last, acc)
     }
-    println(fib(5))
+
+    println(fib(8)) // 21
+    // index: 0, 1,2,3,4,5,6,7, 8
+    // fib: 0, 1, 1 
+    //(0,1,1,2,3,5,8,13,21,...)
+
+
 }
